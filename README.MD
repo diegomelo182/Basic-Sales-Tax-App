@@ -1,6 +1,6 @@
 # Basic Sales Tax App
 
-To run the app, please run the following command:
+To run the bash app, please run the following command:
 
 ```bash
 $ ruby init.rb
@@ -19,6 +19,12 @@ Then, you can register the items, one per time, and then it will print the resul
 The word imported right before the product name is not required.
 
 The product price field must have 2 decimal cases, you can use dot (1.00) or comma (1,00).
+
+In addition, you can run the specs which is also testing the challenge's inputs, just running the following cmd:
+
+```bash
+$ rspec
+```
 
 # Challenge Information
 

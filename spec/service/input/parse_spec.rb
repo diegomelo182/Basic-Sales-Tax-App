@@ -47,7 +47,7 @@ RSpec.describe Input::Parse do
     end
 
     context 'when price has decimal comma' do
-      let(:input) { '1 Book at 10,456' }
+      let(:input) { '1 Book at 10,46' }
 
       before do
         allow(Input::Validate).to receive(:call).with(input).and_return(true)

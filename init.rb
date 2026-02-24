@@ -9,7 +9,7 @@ Dir[
 repeat_product_registration = true
 
 puts '[Basic Sales Tax App]'
-order = Order.new
+products = []
 
 while repeat_product_registration
   puts '------------------------------'
@@ -27,9 +27,8 @@ while repeat_product_registration
 
     product_type = Product::SUPPORTED_TYPES[3] # set other by default
     product_type = Product::SUPPORTED_TYPES[product_type_input.to_i] if %w[0 1 2].include?(product_type_input)
-    parsed_product = Input::Parse.call(product, product_type: product_type)
 
-    order.add_product(product: parsed_product[:product], quantity: parsed_product[:quantity])
+    products << { text: product, type: product_type }
     puts '------------------------------'
     puts 'do you want to add a new product?'
     puts '[0] No'
@@ -44,8 +43,12 @@ while repeat_product_registration
   end
 end
 
-tax_processed_order = TaxProcessor::Order.call(order)
+result = TaxProcessor::ReceiptView.call(products)
 
-TaxProcessor::ReceiptView.call(tax_processed_order) # prints the receipt
+result[:products].each do |product|
+  puts product
+end
+puts "Sales Taxes: #{result[:total_tax]}"
+puts "Total: #{result[:total]}"
 
 puts 'end of execution'
